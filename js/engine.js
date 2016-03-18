@@ -25,8 +25,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 606;
+    canvas.width = settings.width;
+    canvas.height = settings.height;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -94,7 +94,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update();
+        //player.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -151,7 +151,7 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        player.render();
+        // player.render();
     }
 
     /* This function does nothing but it could have been a good place to

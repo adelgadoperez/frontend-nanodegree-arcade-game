@@ -1,3 +1,8 @@
+// Gane settings
+var settings = {
+    width : 505,
+    height : 606
+}
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -6,6 +11,13 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+    //this.x = 200;
+    this.x = Math.floor(Math.random() * settings.width);
+    this.y = 231;
+
+    // Set the speed of the enemy
+    this.speed = 100
 };
 
 // Update the enemy's position, required method for game
@@ -14,6 +26,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += (this.speed * dt);
+
+    // check if enemy reach border of canvas and wrap
+    if (this.x > settings.width) {
+        this.x = -101;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -28,6 +46,9 @@ Enemy.prototype.render = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
+
+var allEnemies = [];
+allEnemies.push(new Enemy())
 // Place the player object in a variable called player
 
 
@@ -42,5 +63,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+    // player.handleInput(allowedKeys[e.keyCode]);
 });
