@@ -41,6 +41,7 @@ Enemy.prototype.update = function(dt) {
         // Then check if the enemy and player are close to each other
         if (Math.abs(player.x - this.x) < 80) {
             player.reset();
+            player.renderSorry();
         }
     }
 };
@@ -62,14 +63,15 @@ var Player = function() {
 
     // set the initial position for player
     this.x = 202;
-    this.y = 405; 
+    this.y = 405;
 };
 
-// initial position of player in case  of collision or win the game
+// initial position of player in case  of win the game
 Player.prototype.update = function() {
     if (this.y < 0) {
         this.x = 202;
         this.y = 405;
+        this.renderWin();
     }
 };
 //
@@ -81,58 +83,65 @@ Player.prototype.reset = function() {
 
 // Player moves to new position
 Player.prototype.handleInput = function(key) {
-  /*
-    switch(key) {
-        case 'up':
-          if (this.y > 0){
-            this.y -= 83;
-          }
-          break;
-        case 'down':
-          if (this.y < 405){
-            this.y += 83;
-          }
-          break;
-        case 'left':
-          if (this.x > 0){
-            this.x -= 101;
-          }
-          break;
-        case 'right':
-          if (this.x < 404){
-            this.x += 101;
-          }
-          break;
-    }*/
   //
+    ctx.clearRect(250, 10, 255, 38);
   // In case of left key check if player is on the screen then move one square left
-     if (key === 'left') {
-         if (this.x > 0) {
-             this.x -= 101;
-         }
-     }
+    if (key === 'left') {
+        if (this.x > 0) {
+            this.x -= 101;
+        }
+    }
 
   // In case of right key check if player is on the screen then move one square right
-     else if (key === 'right') {
+    else if (key === 'right') {
          if (this.x < 404) {
              this.x += 101;
-          }
+        }
     }
    // In case of up key check if player is on the screen then move one square up
-     else if (key === 'up') {
+    else if (key === 'up') {
          if (this.y > 0) {
              this.y -= 83;
-          }
+        }
     }
    // In case of down key check if player is on the screen then move one square down
-     else if (key === 'down') {
+    else if (key === 'down') {
          if (this.y < 405) {
              this.y += 83;
-          }         
+        }         
     }
 //
 };
-
+/**
+ * Print the Win message
+ */
+Player.prototype.renderWin = function() {
+    ctx.font = "30px Impact";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "right";
+    ctx.clearRect(300, 10, 205, 38);
+    ctx.fillText("You Win!!", settings.width, 40);
+};
+/**
+ * Print the you lose message
+ */
+Player.prototype.renderSorry = function() {
+    ctx.font = "30px Impact";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "right";
+    ctx.clearRect(300, 10, 205, 38);
+    ctx.fillText("Sorry, try again!", settings.width, 40);
+};
+/**
+ * Initial Message at the beggining of game
+ */
+Player.prototype.renderStartmessage = function() {
+    ctx.font = "30px Impact";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "right";
+    ctx.clearRect(300, 10, 205, 38);
+    ctx.fillText("Start new game!!", settings.width, 40);
+};
     // Draw our player on the screen
     Player.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
