@@ -10,15 +10,15 @@ Part of the code was provided by Udacity. I have to develop Player and Ennemies 
 
 ## How to play the game
 
-Use the four keys for movements of the player 'up' , 'down', 'left', or 'right'
+You can move the player using one the arrows: 'up' , 'down', 'left', or 'right'
 
 ## Installation
 
-You can copy all files and install locally in your computer. Then start the game loading index.html in a browser which support HMLT5
+You can copy all files and install locally in your computer. Then start the game loading index.html in a browser which support HTML5
 
 ## Contributors
 
-You can contribute to this project with implementations of new functionality.
+You can contribute to this project with new functionality implementation.
 
 ## Instruction for students:
 
